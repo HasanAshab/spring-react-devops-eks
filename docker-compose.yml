@@ -1,18 +1,16 @@
-version: "2"
-
 services:
-
   spring-frontend:
     build:
       context: react-frontend
-      dockerfile: Dockerfile
+      target: dev
     ports:
-      - "80:80"
+      - "4200:4200"
     networks:
       - springreact-net
+    depends_on:
+      - spring-backend
   
   spring-backend:
-    image: spring-backend
     build:
       context: spring-backend
     ports:
