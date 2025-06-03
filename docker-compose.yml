@@ -21,6 +21,8 @@ services:
       - springmysql-net
     depends_on:
       - mysqldb
+    volumes:
+      - ./spring-backend:/app
 
   mysqldb:
     image: mysql:8-oracle
