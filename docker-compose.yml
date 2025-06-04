@@ -8,7 +8,7 @@ services:
       - "4200:4200"
     stdin_open: true
     volumes:
-      - ./frontend:/app
+      - ./react-frontend:/app
       - /app/node_modules
     networks:
       - springreact-net
@@ -18,11 +18,17 @@ services:
   spring-backend:
     build:
       context: spring-backend
+      target: dev
     env_file: ./spring-backend/.env.dev
     ports:
       - "8080:8080"
+    volumes:
+      - ./spring-backend:/app
+      - ~/.m2:/root/.m2
+      - /app/target
     networks:
       - springmysql-net
+      - springreact-net
     depends_on:
       - mysqldb
 
