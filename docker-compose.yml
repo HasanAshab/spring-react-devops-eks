@@ -23,9 +23,8 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./spring-backend:/app
-      - ~/.m2:/root/.m2
-      - /app/target
+      - ./spring-backend/src:/app/src
+      - ./spring-backend/pom.xml:/app/pom.xml
     networks:
       - springmysql-net
       - springreact-net
