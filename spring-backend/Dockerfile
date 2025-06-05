@@ -1,49 +1,32 @@
-#########################
-# ---- Stage: base ---- #
-#########################
-FROM maven:3.8.6-openjdk-11 AS base
+FROM maven:3.8.5-eclipse-temurin-11 AS builder
 
-# set work directory
+# set working directory
 WORKDIR /app
 
-# install maven dependencies
+# download maven dependencies
 COPY pom.xml .
-RUN mvn dependency:go-offline -B
+RUN mvn dependency:go-offline
 
-# copy project
-COPY . .
-
-# expose app
-EXPOSE 8080
+# build application
+COPY src ./src
+RUN mvn install
 
 
-##########################
-# ---- Stage: dev  ----  #
-##########################
-FROM base AS dev
+FROM builder AS dev
 
 # run app
 CMD ["mvn", "spring-boot:run"]
 
+FROM builder AS prepare-production
+RUN mkdir -p target/dependency
+WORKDIR /workdir/server/target/dependency
+RUN jar -xf ../*.jar
 
-###########################
-# ---- Stage: builder --- #
-###########################
-FROM base AS builder
-# build app
-RUN mvn clean package -DskipTests
-
-
-###########################
-# ---- Stage: prod  ----  #
-###########################
-FROM openjdk:11-jdk-slim AS prod
-
-# set work directory
-WORKDIR /app
-
-# copy jar from builder
-COPY --from=builder /app/target/*.jar app.jar
-
-# run app
-ENTRYPOINT ["java", "-jar", "app.jar"]
+FROM eclipse-temurin:11-jre-focal AS prod
+EXPOSE 8080
+VOLUME /tmp
+ARG DEPENDENCY=/workdir/server/target/dependency
+COPY --from=prepare-production ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY --from=prepare-production ${DEPENDENCY}/META-INF /app/META-INF
+COPY --from=prepare-production ${DEPENDENCY}/BOOT-INF/classes /app
+ENTRYPOINT ["java","-cp","app:app/lib/*","com.company.project.Application"]
