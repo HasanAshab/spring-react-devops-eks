@@ -2,28 +2,48 @@
 # ---- Stage: base ---- #
 #########################
 FROM maven:3.8.6-openjdk-11 AS base
+
+# set work directory
 WORKDIR /app
+
+# install maven dependencies
 COPY pom.xml .
 RUN mvn dependency:go-offline -B
+
+# copy project
 COPY . .
+
+# expose app
+EXPOSE 8080
+
 
 ##########################
 # ---- Stage: dev  ----  #
 ##########################
 FROM base AS dev
-ENV JAVA_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
-EXPOSE 8080 5005
 
-CMD ["mvn", "spring-boot:run", "-Dspring-boot.run.fork=false"]
+# run app
+CMD ["mvn", "spring-boot:run"]
+
+
+###########################
+# ---- Stage: builder --- #
+###########################
+FROM base AS builder
+# build app
+RUN mvn clean package -DskipTests
+
 
 ###########################
 # ---- Stage: prod  ----  #
 ###########################
-FROM base AS builder
-RUN mvn clean package -DskipTests
-
 FROM openjdk:11-jdk-slim AS prod
+
+# set work directory
 WORKDIR /app
+
+# copy jar from builder
 COPY --from=builder /app/target/*.jar app.jar
-EXPOSE 8080
+
+# run app
 ENTRYPOINT ["java", "-jar", "app.jar"]
