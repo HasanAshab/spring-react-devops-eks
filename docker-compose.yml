@@ -5,7 +5,7 @@ services:
       target: dev
     env_file: ./react-frontend/.env.dev
     ports:
-      - "4200:4200"
+      - 4200:4200
     stdin_open: true
     volumes:
       - ./react-frontend:/app
@@ -21,7 +21,7 @@ services:
       target: dev
     env_file: ./spring-backend/.env.dev
     ports:
-      - "8080:8080"
+      - 8080:8080
     networks:
       - springmysql-net
       - springreact-net
@@ -35,6 +35,8 @@ services:
       - springmysql-net
     volumes:
       - mysqldb-data:/var/lib/mysql
+    expose:
+      - 3306
 
 networks:
   springreact-net:

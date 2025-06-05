@@ -15,7 +15,7 @@ RUN mvn install
 FROM builder AS dev
 
 # run app
-CMD ["mvn", "spring-boot:run"]
+CMD [ "mvn", "spring-boot:run" ]
 
 FROM builder AS prepare-production
 RUN mkdir -p target/dependency

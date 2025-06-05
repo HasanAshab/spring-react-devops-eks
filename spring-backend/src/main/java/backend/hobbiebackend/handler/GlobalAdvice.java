@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
 @ControllerAdvice
-class GlobalAdvise {
-    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalAdvise.class);
+class GlobalAdvice {
+    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalAdvice.class);
 
     @ExceptionHandler({FailToDeleteException.class, NotFoundException.class})
     public ModelAndView handleDBInconsistentException(RuntimeException ex) {

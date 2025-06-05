@@ -1,4 +1,4 @@
-package com.example.config; // Adjust the package name if needed
+package backend.hobbiebackend.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
