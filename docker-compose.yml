@@ -18,10 +18,13 @@ services:
   spring-backend:
     build:
       context: spring-backend
-      target: dev
+      target: prod
     env_file: ./spring-backend/.env.dev
     ports:
       - 8080:8080
+    volumes:
+      - ./spring-backend/src:/app/src
+      - ~/.m2:/root/.m2
     networks:
       - springmysql-net
       - springreact-net
