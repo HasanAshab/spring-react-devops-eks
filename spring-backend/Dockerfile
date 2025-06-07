@@ -11,18 +11,21 @@ RUN mvn dependency:go-offline
 COPY src ./src
 RUN mvn install
 
+# expose port
+EXPOSE 8080
+
 
 FROM builder AS dev
 
 # run app
 CMD [ "mvn", "spring-boot:run" ]
 
+
 FROM builder AS prepare-production
 RUN mkdir -p target/dependency
 RUN jar -xf ./target/*.jar
 
 FROM eclipse-temurin:11-jre-focal AS prod
-EXPOSE 8080
 VOLUME /tmp
 
 COPY --from=prepare-production /app/META-INF /app/META-INF
