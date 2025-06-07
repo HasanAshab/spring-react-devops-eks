@@ -19,14 +19,13 @@ CMD [ "mvn", "spring-boot:run" ]
 
 FROM builder AS prepare-production
 RUN mkdir -p target/dependency
-WORKDIR /app
-RUN jar -xf ../*.jar
+RUN jar -xf ./target/*.jar
 
 FROM eclipse-temurin:11-jre-focal AS prod
 EXPOSE 8080
 VOLUME /tmp
 
-COPY --from=prepare-production /app/BOOT-INF/lib /app/lib
 COPY --from=prepare-production /app/META-INF /app/META-INF
-COPY --from=prepare-production $/app/BOOT-INF/classes /app
-ENTRYPOINT ["java","-cp","app:app/lib/*","com.company.project.Application"]
+COPY --from=prepare-production /app/BOOT-INF/classes /app
+COPY --from=prepare-production /app/BOOT-INF/lib /app/lib
+ENTRYPOINT [ "java", "-cp","app:app/lib/*", "backend.hobbiebackend.HobbieBackendApplication" ]
