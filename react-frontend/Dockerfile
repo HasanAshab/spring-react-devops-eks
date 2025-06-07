@@ -28,8 +28,8 @@ RUN npm run build
 
 FROM nginx:1.23.2-alpine AS prod
 
-# copy nginx config
-COPY /.nginx/nginx.conf /etc/nginx/conf.d/default.conf
+# copy nginx config if exists
+COPY /.nginx*/nginx.conf* /etc/nginx/conf.d/default.conf
 
 # remove default stuff
 RUN rm -rf .//usr/share/nginx/html/*

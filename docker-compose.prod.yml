@@ -2,14 +2,10 @@ services:
   spring-frontend:
     build:
       context: react-frontend
-      target: dev
-    env_file: ./react-frontend/.env.dev
+      target: prod
+    env_file: ./react-frontend/.env.prod
     ports:
-      - 4200:4200
-    stdin_open: true
-    volumes:
-      - ./react-frontend:/app
-      - /app/node_modules
+      - 4200:80
     networks:
       - springreact-net
     depends_on:
@@ -18,12 +14,10 @@ services:
   spring-backend:
     build:
       context: spring-backend
-      target: dev
-    env_file: ./spring-backend/.env.dev
+      target: prod
+    env_file: ./spring-backend/.env.prod
     ports:
       - 8080:8080
-    volumes:
-      - ~/.m2:/root/.m2
     networks:
       - springmysql-net
       - springreact-net
@@ -32,7 +26,7 @@ services:
 
   mysqldb:
     image: mysql:8-oracle
-    env_file: ./mysqldb/.env.dev
+    env_file: ./mysqldb/.env.prod
     networks:
       - springmysql-net
     volumes:
