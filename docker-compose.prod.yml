@@ -1,21 +1,21 @@
 services:
   spring-frontend:
     build:
-      context: react-frontend
+      context: frontend
       target: prod
-    env_file: ./react-frontend/.env.prod
+    env_file: ./frontend/.env.prod
     ports:
       - 4200:80
     networks:
       - springreact-net
     depends_on:
-      - spring-backend
+      - backend
 
-  spring-backend:
+  backend:
     build:
-      context: spring-backend
+      context: backend
       target: prod
-    env_file: ./spring-backend/.env.prod
+    env_file: ./backend/.env.prod
     ports:
       - 8080:8080
     networks:

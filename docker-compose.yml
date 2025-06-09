@@ -1,25 +1,25 @@
 services:
   spring-frontend:
     build:
-      context: react-frontend
+      context: frontend
       target: dev
-    env_file: ./react-frontend/.env.dev
+    env_file: ./frontend/.env.dev
     ports:
       - 4200:4200
     stdin_open: true
     volumes:
-      - ./react-frontend:/app
+      - ./frontend:/app
       - /app/node_modules
     networks:
       - springreact-net
     depends_on:
-      - spring-backend
+      - backend
 
-  spring-backend:
+  backend:
     build:
-      context: spring-backend
+      context: backend
       target: dev
-    env_file: ./spring-backend/.env.dev
+    env_file: ./backend/.env.dev
     ports:
       - 8080:8080
     volumes:
