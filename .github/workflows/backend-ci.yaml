@@ -4,16 +4,15 @@ on:
     branches:
       - main
     paths:
+      - 'backend/**'
       - '.github/workflows/backend-ci.yaml'
-      - 'backend/src/**'
-      - 'backend/pom.xml'
 
   pull_request:
     branches:
       - main
     paths:
-      - 'backend/src/**'
-      - 'backend/pom.xml'
+      - 'backend/**'
+      - '.github/workflows/backend-ci.yaml'
 
 defaults:
   run:
