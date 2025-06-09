@@ -42,7 +42,7 @@ jobs:
           cache: maven
 
       - name: Run tests
-        run: chmod +x ./mvnw && ./mvnw test
+        run: mvn test
         env:
           SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/hobbie_backend_db_prod?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Paris
           SPRING_DATASOURCE_USERNAME: root
