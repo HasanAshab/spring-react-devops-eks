@@ -131,7 +131,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: backend
-          file: ./Dockerfile
           target: prod
           push: false
           load: true
@@ -172,7 +171,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: backend
-          file: ./Dockerfile
           target: prod
           push: true
           tags: ${{ steps.meta.outputs.tags }}
