@@ -26,14 +26,16 @@ jobs:
     services:
       db:
         image: mysql:8-oracle
-        env_file: ./db/.env.prod.sample #todo
+        env:
+          MYSQL_DATABASE: hobbie_backend_db_prod
+          MYSQL_ROOT_PASSWORD: 1
         volumes:
           - db-data:/var/lib/mysql
         expose:
           - 3306
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -42,6 +44,10 @@ jobs:
 
       - name: Run tests
         run: chmod +x ./mvnw && ./mvnw test
+        env:
+          SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/hobbie_backend_db_prod?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Paris
+          SPRING_DATASOURCE_USERNAME: root
+          SPRING_DATASOURCE_PASSWORD: 1
 
   lint:
     name: Run lint
