@@ -21,8 +21,16 @@ defaults:
 
 jobs:
   test:
-    name: Run tests
+    name: Run E2E tests
     runs-on: ubuntu-latest
+    services:
+      db:
+        image: mysql:8-oracle
+        env_file: ./db/.env.prod.sample #todo
+        volumes:
+          - db-data:/var/lib/mysql
+        expose:
+          - 3306
     steps:
       - uses: actions/checkout@v4
       

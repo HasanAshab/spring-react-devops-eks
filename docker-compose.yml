@@ -1,5 +1,5 @@
 services:
-  spring-frontend:
+  frontend:
     build:
       context: frontend
       target: dev
