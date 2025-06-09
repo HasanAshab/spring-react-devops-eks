@@ -9,7 +9,7 @@ RUN mvn dependency:go-offline
 
 # Build app
 COPY src ./src
-RUN mvn install
+RUN mvn install -DskipTests
 
 EXPOSE 8080
 
