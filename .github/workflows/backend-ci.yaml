@@ -31,8 +31,7 @@ jobs:
           MYSQL_ROOT_PASSWORD: 1
         volumes:
           - db-data:/var/lib/mysql
-        expose:
-          - 3306
+
     steps:
       - uses: actions/checkout@v4
 
