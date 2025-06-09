@@ -99,84 +99,84 @@ jobs:
       image_tag: ${{ steps.set_output.outputs.image_tag }}
       image_tag_short: ${{ steps.set_output.outputs.image_tag_short }}
     steps:
-    - name: Set variables
-      id: vars
-      run: |
-        echo "image_name=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_OUTPUT"
+      - name: Set variables
+        id: vars
+        run: |
+          echo "image_name=$(echo '${{ github.repository }}' | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_OUTPUT"
 
-  - name: Checkout repository
-    uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+    
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
-  - name: Set up Docker Buildx
-    uses: docker/setup-buildx-action@v3
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
-  - name: Login to GitHub Container Registry
-    uses: docker/login-action@v3
-    with:
-      registry: ${{ env.REGISTRY }}
-      username: ${{ github.actor }}
-      password: ${{ secrets.GITHUB_TOKEN }}
- 
-  - name: Extract metadata for Docker
-    id: meta
-    uses: docker/metadata-action@v5
-    with:
-      images: ${{ env.REGISTRY }}/${{ steps.vars.outputs.image_name }}
-      tags: |
-        type=sha,format=long
-        type=ref,event=branch
-        latest
+      - name: Extract metadata for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ steps.vars.outputs.image_name }}
+          tags: |
+            type=sha,format=long
+            type=ref,event=branch
+            latest
 
-  - name: Build docker image
-    uses: docker/build-push-action@v6
-    with:
-      context: .
-      file: ./Dockerfile
-      target: prod
-      push: false
-      load: true
-      tags: ${{ steps.meta.outputs.tags }}
-      labels: ${{ steps.meta.outputs.labels }}
+      - name: Build docker image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          target: prod
+          push: false
+          load: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
-  - name: Set image tag outputs
-    id: set_output
-    env:
-      DOCKER_METADATA: ${{ steps.meta.outputs.json }}
-    run: |
-      # Extract full image reference with sha- tag
-      full_ref=$(echo "$DOCKER_METADATA" | jq -r '.tags[] | select(test(":sha-"))' | head -n 1)
+      - name: Set image tag outputs
+        id: set_output
+        env:
+          DOCKER_METADATA: ${{ steps.meta.outputs.json }}
+        run: |
+          # Extract full image reference with sha- tag
+          full_ref=$(echo "$DOCKER_METADATA" | jq -r '.tags[] | select(test(":sha-"))' | head -n 1)
+    
+          # Extract just the tag (after the last colon)
+          full_tag="${full_ref##*:}"
+          echo "SHA Image tag: $full_tag"
+    
+          # Short tag = first 7 chars of the sha
+          short_tag=$(echo "$full_tag" | cut -c5-11)
+          echo "Short form: $short_tag"
+    
+          echo "image_tag=$full_tag" >> "$GITHUB_OUTPUT"
+          echo "image_tag_short=$short_tag" >> "$GITHUB_OUTPUT"
 
-      # Extract just the tag (after the last colon)
-      full_tag="${full_ref##*:}"
-      echo "SHA Image tag: $full_tag"
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ env.REGISTRY }}/${{ steps.vars.outputs.image_name }}:${{ steps.set_output.outputs.image_tag }}
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
 
-      # Short tag = first 7 chars of the sha
-      short_tag=$(echo "$full_tag" | cut -c5-11)
-      echo "Short form: $short_tag"
-
-      echo "image_tag=$full_tag" >> "$GITHUB_OUTPUT"
-      echo "image_tag_short=$short_tag" >> "$GITHUB_OUTPUT"
-
-  - name: Run Trivy vulnerability scanner
-    uses: aquasecurity/trivy-action@master
-    with:
-      image-ref: ${{ env.REGISTRY }}/${{ steps.vars.outputs.image_name }}:${{ steps.set_output.outputs.image_tag }}
-      format: 'table'
-      exit-code: '1'
-      ignore-unfixed: true
-      vuln-type: 'os,library'
-      severity: 'CRITICAL,HIGH'
-
-  - name: Push docker image
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    uses: docker/build-push-action@v6
-    with:
-      context: .
-      file: ./Dockerfile
-      target: prod
-      push: true
-      tags: ${{ steps.meta.outputs.tags }}
-      labels: ${{ steps.meta.outputs.labels }}
+      - name: Push docker image
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          target: prod
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
   # update-helm:
   #   name: Sync helm chart image tag
