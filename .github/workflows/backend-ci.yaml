@@ -80,15 +80,16 @@ jobs:
   
       - name: Build project
         run: mvn clean package -DskipTests
-  
+      - name: debug
+        run: ls
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
           path: |
-            target/*.jar
-            target/*.war
-  
+            backend/target/*.jar
+            backend/target/*.war
+
   docker:
     name: Build and push docker image
     runs-on: ubuntu-latest
