@@ -11,7 +11,7 @@ services:
       - ./frontend:/app
       - /app/node_modules
     networks:
-      - springreact-net
+      - backendfrontend-net
     depends_on:
       - backend
 
@@ -25,24 +25,24 @@ services:
     volumes:
       - ~/.m2:/root/.m2
     networks:
-      - springmysql-net
-      - springreact-net
+      - backenddb-net
+      - backendfrontend-net
     depends_on:
-      - mysqldb
+      - db
 
-  mysqldb:
+  db:
     image: mysql:8-oracle
-    env_file: ./mysqldb/.env.dev
+    env_file: ./db/.env.dev
     networks:
-      - springmysql-net
+      - backenddb-net
     volumes:
-      - mysqldb-data:/var/lib/mysql
+      - db-data:/var/lib/mysql
     expose:
       - 3306
 
 networks:
-  springreact-net:
-  springmysql-net:
+  backendfrontend-net:
+  backenddb-net:
 
 volumes:
-  mysqldb-data:
+  db-data:
