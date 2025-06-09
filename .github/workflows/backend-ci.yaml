@@ -29,6 +29,8 @@ jobs:
         env:
           MYSQL_DATABASE: hobbie_backend_db_prod
           MYSQL_ROOT_PASSWORD: 1
+        ports:
+          - 3306:3306
 
     steps:
       - uses: actions/checkout@v4
