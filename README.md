@@ -1,9 +1,12 @@
 # SpringBoot + React Web App – DevOps Edition
 
-[![Frontend CI](https://github.com/HasanAshab/spring-react-devops/actions/workflows/frontend-ci.yaml/badge.svg)](https://github.com/HasanAshab/spring-react-devops/actions/workflows/frontend-ci.yaml)
-[![Backend CI](https://github.com/HasanAshab/spring-react-devops/actions/workflows/backend-ci.yaml/badge.svg)](https://github.com/HasanAshab/spring-react-devops/actions/workflows/backend-ci.yaml)
-[![Frontend Img Size](https://ghcr-badge.egpl.dev/hasanashab/spring-react-devops-frontend/size)](https://github.com/HasanAshab/go-web-app-devops/pkgs/container/spring-react-devops)
-[![Backend Img Size](https://ghcr-badge.egpl.dev/hasanashab/spring-react-devops-backend/size)](https://github.com/HasanAshab/go-web-app-devops/pkgs/container/spring-react-devops)
+**Frontend**  
+[![CI pipeline](https://github.com/HasanAshab/spring-react-devops/actions/workflows/frontend-ci.yaml/badge.svg)](https://github.com/HasanAshab/spring-react-devops/actions/workflows/frontend-ci.yaml)
+[![image size](https://ghcr-badge.egpl.dev/hasanashab/spring-react-devops-frontend/size)](https://github.com/HasanAshab/go-web-app-devops/pkgs/container/spring-react-devops)
+
+**Backend**  
+[![CI pipeline](https://github.com/HasanAshab/spring-react-devops/actions/workflows/backend-ci.yaml/badge.svg)](https://github.com/HasanAshab/spring-react-devops/actions/workflows/backend-ci.yaml)
+[![image size](https://ghcr-badge.egpl.dev/hasanashab/spring-react-devops-backend/size)](https://github.com/HasanAshab/go-web-app-devops/pkgs/container/spring-react-devops)
 
 
 
