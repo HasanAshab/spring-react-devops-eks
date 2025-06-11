@@ -2,11 +2,10 @@
 
 [![Frontend CI](https://github.com/HasanAshab/spring-react-devops/actions/workflows/frontend-ci.yaml/badge.svg)](https://github.com/HasanAshab/spring-react-devops/actions/workflows/frontend-ci.yaml)
 [![Backend CI](https://github.com/HasanAshab/spring-react-devops/actions/workflows/backend-ci.yaml/badge.svg)](https://github.com/HasanAshab/spring-react-devops/actions/workflows/backend-ci.yaml)
-[![1] ![2]](https://github.com/HasanAshab/go-web-app-devops/pkgs/container/spring-react-devops)
+[![Frontend Img Size](https://ghcr-badge.egpl.dev/hasanashab/spring-react-devops-frontend/size)](https://github.com/HasanAshab/go-web-app-devops/pkgs/container/spring-react-devops)
+[![Backend Img Size](https://ghcr-badge.egpl.dev/hasanashab/spring-react-devops-backend/size)](https://github.com/HasanAshab/go-web-app-devops/pkgs/container/spring-react-devops)
 
 
-[1]: <https://ghcr-badge.egpl.dev/hasanashab/spring-react-devops-frontend/size>
-[2]: <https://ghcr-badge.egpl.dev/hasanashab/spring-react-devops-backend/size>
 
 This is a DevOps-enhanced deployment of a [spring + react based web app](https://github.com/iam-veeramalla/go-web-app), restructured and productionized with best practices for containerization, CI/CD, and Kubernetes.
 
