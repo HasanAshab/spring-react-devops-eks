@@ -1,118 +1,74 @@
+# SpringBoot + React Web App – DevOps Edition
 
-<b>ReactJS-Spring-Boot-Full-Stack-App</b>
-<hr>
-
-This project consists of two applications: one is a Spring Boot Rest API
-called backend and another is a ReactJS application called
-frontend.
-
-Service-oriented platform focusing on establishing and maintaining
-connections between consumers and small businesses in the The Arts,
-Entertainment, and Recreation sector.
-
-Click [here](https://www.hobbie.ch) to view the application.
-This application is subject to Copyright.
-
-<b>Applications</b>
-<hr>
-
- <b> - backend</b>
-
-Spring Boot Web Java backend application that exposes a REST API to
-manage hobbies. Its secured endpoints can just be accessed if an access
-token (JWT) is provided.
-
-backend stores its data in a MySql database.
-
-backend has the following endpoints
+[![Frontend CI](https://github.com/HasanAshab/spring-react-devops/actions/workflows/frontend-ci.yaml/badge.svg)](https://github.com/HasanAshab/spring-react-devops/actions/workflows/frontend-ci.yaml)
+[![Backend CI](https://github.com/HasanAshab/spring-react-devops/actions/workflows/backend-ci.yaml/badge.svg)](https://github.com/HasanAshab/spring-react-devops/actions/workflows/backend-ci.yaml)
+[![1] ![2]](https://github.com/HasanAshab/go-web-app-devops/pkgs/container/spring-react-devops)
 
 
-<b>-frontend</b>
+[1]: <https://ghcr-badge.egpl.dev/hasanashab/spring-react-devops-frontend/size>
+[2]: <https://ghcr-badge.egpl.dev/hasanashab/spring-react-devops-backend/size>
 
-ReactJS frontend application where users can find and save hobbies and businesses can manage offers. In order to access the application, user / business must login using his/her username and password.  All the requests coming from frontend to secured endpoints in backend have a access token (JWT) that is generated when user / business logs in.
+This is a DevOps-enhanced deployment of a [spring + react based web app](https://github.com/iam-veeramalla/go-web-app), restructured and productionized with best practices for containerization, CI/CD, and Kubernetes.
 
-frontend uses Semantic UI React as CSS-styled framework.
+---
 
-<b>Prerequisites</b>
-<hr>
+## 🚀 DevOps Features Implemented
 
--Java 11+
+* **Dockerized Build**: Multi-stage Dockerfile for efficient image creation.
+* **Local Development**: `docker-compose` support with hot reload for rapid iteration.
+* **Kubernetes Deployment**: Complete manifest files for deployment on **_AWS EKS_**.
+* **Helm Charts**: Configurable Kubernetes manifests.
+* **Ingress Management**: Ingress Controller (**_NGINX_**) for routing and external access.
+* **CI with GitHub Actions**: [See more](#️cicd-pipeline).
+* **CD via Argo CD**: [See more](#️cicd-pipeline).
 
--npm
+---
 
--JWT 
+## 🧑‍💻 Local Development
 
-<b>Set up</b>
+To spin up the application locally with Docker:
 
-<hr></hr>
+```bash
+docker-compose up
+```
 
-Clone the repository:
+Once running, the server will be accessible at:
+**[http://localhost:4200](http://localhost:4200)**
 
-<pre>git clone https://github.com/purshink/ReactJS-Spring-Boot-Full-Stack-App.git</pre>
+**Hot reload** is enabled—code.
 
-Navigate to the newly created folder:
+---
 
-<pre>cd  ReactJS-Spring-Boot-Full-Stack-App</pre>
- 
+## ⚙️ CI/CD Pipeline
 
-<b>Frontend -</b>
+This project is equipped with a robust CI/CD pipeline:
 
-Install NodeJs.v.16.13.1 /npm v.8.3.0
+* **CI (GitHub Actions)**:
+ ![CI Diagram](static/images/ci.png)
 
-Navigate to frontend subfolder:
- 
-<pre>cd frontend</pre>
+* **CD (Argo CD)**:
+![CD Diagram](static/images/cd.png)
 
-Install the modules
+---
 
-<pre>npm i</pre>
+## 🛠️ Prerequisites (for Prod Deployment)
 
-Start the application on local host:
+* AWS EKS Cluster
+* Argo CD configured and running
+* Helm 3+
+* NGINX Ingress Controller installed
+* Docker and kubectl installed
 
-<pre>npm start</pre>
+---
 
-Navigate to:
+## 📈 Future Improvements
+* Add Prometheus/Grafana integration
+* Implement healthcheck endpoints and readiness probes
 
-http://localhost:4200
+---
 
- 
-<b>Backend -</b>
-Install JDK 11.0.11
-Install docker -v 20.10.7
-Install docker-compose -v 1.8.0
-
-Navigate to backend subfolder:
-
-<pre>cd backend</pre>
-
-Run the project with:
-
-<pre>docker-compose up --build</pre>
-
-
-The project has the following endpoints:
-
-IMPORTANT: to explore api enter url:  /v3/api-docs
-
-http://localhost:8080/swagger-ui/index.html
-
-
-NOTE: Testing API 
-
--/signup (create client-user) or /register (create business-user)
-
--/authenticate (returns JWT authentication token)
-
--use JWT token in order to authorize access to secured endpoints (click the lock icon or use the Authorize button on the upper right corner - then paste JWT Token )
-
-NOTE: /notification endpoint will return an internal server error if you don't specify spring.mail credentials first.
-
-<pre>The backend will run on http://localhost:8080 </pre>
-
-<b>Spring Mail</b>
-
-Make sure to specify a valid spring.mail.username and spring.mail.password in the application.properties file in order to be able to send an Email confirmation for updating user entries.
-
-IMPORTANT: if you decide not to specify mail credentials, you will get javax.mail.AuthenticationFailedException. The rest of the application should work normally despite this exception.
-
-
+## 🙋‍♂️ About Me
+**Hasan Ashab** – DevOps Engineer  
+LinkedIn: [@hasan-ashab](https://www.linkedin.com/in/hasan-ashab-b9b20a290)
+Portfolio: Under development
+---
