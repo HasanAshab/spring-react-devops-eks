@@ -34,7 +34,8 @@
     "start": "PORT=4200 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(jest-)?(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons|react-confirm-alert)/)'",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "eslintConfig": {
     "extends": [
@@ -58,6 +59,7 @@
     "@babel/preset-env": "^7.16.11",
     "@types/jsdom": "^11.12.0",
     "axios-mock-adapter": "^1.20.0",
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "eslint": "^8.0.0"
   }
 }
