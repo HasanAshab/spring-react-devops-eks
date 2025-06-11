@@ -71,6 +71,13 @@ Once running, the server will be accessible at:
 
 ---
 
+## 🐞 Known Issues
+
+You can find ongoing bugs, limitations, or caveats in the [Known Issues](./KNOWN_ISSUES.md) document.
+
+---
+
+
 ## 🙋‍♂️ About Me
 **Hasan Ashab** – DevOps Engineer  
 LinkedIn: [@hasan-ashab](https://www.linkedin.com/in/hasan-ashab-b9b20a290)
