@@ -13,6 +13,7 @@
     "axios-auth-refresh": "^3.2.1",
     "babel-plugin-macros": "^3.1.0",
     "beautiful-react-hooks": "^1.2.0",
+    "caniuse-lite": "^1.0.30001721",
     "core-js": "^3.22.0",
     "formik": "^2.2.9",
     "jest-mock-axios": "^4.5.0",
@@ -35,7 +36,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --transformIgnorePatterns 'node_modules/(?!(jest-)?(@ionic/react|@ionic/react-router|@ionic/core|@stencil/core|ionicons|react-confirm-alert)/)'",
     "eject": "react-scripts eject",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
   },
   "eslintConfig": {
     "extends": [
