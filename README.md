@@ -20,8 +20,10 @@ This is a DevOps-enhanced deployment of a [spring + react based web app](https:/
 * **Kubernetes Deployment**: Complete manifest files for deployment on **_AWS EKS_**.
 * **Helm Charts**: Configurable Kubernetes manifests.
 * **Ingress Management**: Ingress Controller (**_NGINX_**) for routing and external access.
-* **CI with GitHub Actions**: [See more](#️cicd-pipeline).
-* **CD via Argo CD**: [See more](#️cicd-pipeline).
+* **CI with GitHub Actions**:
+  * [Frontend – See more](#frontend-ci-pipeline)
+  * [Backend – See more](#backend-ci-pipeline)
+* **CD via Argo CD**: [See more](#cd-pipeline)
 
 ---
 
@@ -42,12 +44,16 @@ Once running, the server will be accessible at:
 
 ## ⚙️ CI/CD Pipeline
 
-This project is equipped with a robust CI/CD pipeline:
+### 🧪 Frontend CI Pipeline
 
-* **CI (GitHub Actions)**:
- ![CI Diagram](static/images/ci.png)
+![Frontend CI Diagram](static/images/frontend-ci.png)
 
-* **CD (Argo CD)**:
+### 🧪 Backend CI Pipeline
+
+![Backend CI Diagram](static/images/backend-ci.png)
+
+### 🚀 CD Pipeline (Argo CD)
+
 ![CD Diagram](static/images/cd.png)
 
 ---
