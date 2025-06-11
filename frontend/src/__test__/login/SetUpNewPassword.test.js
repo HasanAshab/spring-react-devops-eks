@@ -59,12 +59,12 @@ it("should show error message on invalid input", () => {
 it("should update password correctly", async () => {
   const id = "1";
   const password = "n87";
-  mockAxios.post.mockResolvedValueOnce(id);
+  mockAxios.put.mockResolvedValueOnce(id);
 
   const result = await UpdatePasswordService(id, password);
 
-  expect(mockAxios.post).toHaveBeenCalledTimes(1);
-  expect(mockAxios.post).toHaveBeenCalledWith(
+  expect(mockAxios.put).toHaveBeenCalledTimes(1);
+  expect(mockAxios.put).toHaveBeenCalledWith(
     `http://localhost:8080/password`,
     null,
     { params: { id: "1", password: "n87" } }

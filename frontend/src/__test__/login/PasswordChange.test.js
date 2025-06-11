@@ -57,7 +57,8 @@ it("should send email correctly", async () => {
   expect(mockAxios.post).toHaveBeenCalledTimes(1);
   expect(mockAxios.post).toHaveBeenCalledWith(
     `http://localhost:8080/notification`,
-    email
+    null,
+    { params: { email } }
   );
   expect(result).toEqual("n87@gmail.com");
 });
