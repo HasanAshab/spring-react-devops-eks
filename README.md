@@ -44,16 +44,13 @@ Once running, the server will be accessible at:
 
 ## ⚙️ CI/CD Pipeline
 
-### 🧪 Frontend CI Pipeline
-
+### Frontend CI Pipeline
 ![Frontend CI Diagram](static/images/frontend-ci.png)
 
-### 🧪 Backend CI Pipeline
-
+### Backend CI Pipeline
 ![Backend CI Diagram](static/images/backend-ci.png)
 
-### 🚀 CD Pipeline (Argo CD)
-
+### CD Pipeline
 ![CD Diagram](static/images/cd.png)
 
 ---
