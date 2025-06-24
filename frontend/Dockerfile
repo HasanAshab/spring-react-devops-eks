@@ -32,7 +32,7 @@ FROM nginx:1.23.2-alpine AS prod
 COPY /.nginx*/nginx.conf* /etc/nginx/conf.d/default.conf
 
 # remove default stuff
-RUN rm -rf .//usr/share/nginx/html/*
+RUN rm -rf /usr/share/nginx/html/*
 
 # copy build
 COPY --from=build /app/build /usr/share/nginx/html
