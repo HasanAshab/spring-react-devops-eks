@@ -2,7 +2,7 @@ import axios from "axios";
 
 // axios instance for making requests
 const axiosInstance = axios.create({
-  baseURL: process.env.API_URL || "http://localhost:8080",
+  baseURL: process.env.REACT_APP_API_URL || "http://localhost:8080",
 });
 
 // request interceptor for adding token
