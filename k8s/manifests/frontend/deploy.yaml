@@ -24,6 +24,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: ghcr.io/hasanashab/spring-react-devops-eks-frontend:sha-5550039744e981dd2aa0ae54c33b71a9294d6dd0
+        image: ghcr.io/hasanashab/spring-react-devops-eks-frontend:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80

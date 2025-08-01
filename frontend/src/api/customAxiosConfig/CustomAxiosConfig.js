@@ -2,7 +2,7 @@ import axios from "axios";
 
 // axios instance for making requests
 const axiosInstance = axios.create({
-  baseURL: "http://backend:8000",
+  baseURL: "http://backend:8080",
 });
 
 // request interceptor for adding token

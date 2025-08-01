@@ -9,7 +9,7 @@ const Presentation = () => {
         <article className={styles.intro_text}>
           <h1>Ready to have fun?</h1>
           <p>
-            Find out the best activities for you in your area. Take our
+            Find out the better activities for you in your area. Take our
             personalised hobbie-test and help us help you discover your new
             passion.
           </p>
