@@ -12,7 +12,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/instance: three-tier-app
+      app.kubernetes.io/name: backend
   template:
     metadata:
       labels:

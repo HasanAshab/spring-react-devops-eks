@@ -12,7 +12,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/instance: three-tier-app
+      app.kubernetes.io/name: frontend
   template:
     metadata:
       labels:
@@ -24,6 +24,6 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: ghcr.io/hasanashab/spring-react-devops-frontend:latest
+        image: ghcr.io/hasanashab/spring-react-devops-eks-frontend:sha-5550039744e981dd2aa0ae54c33b71a9294d6dd0
         ports:
         - containerPort: 80
