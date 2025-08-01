@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  labels:
+    app.kubernetes.io/instance: three-tier-app
+    app.kubernetes.io/name: backend
+    app.kubernetes.io/component: backend
+    app.kubernetes.io/version: 1.0.0
+    app.kubernetes.io/part-of: three-tier-apps
+spec:
+  selector:
+    app.kubernetes.io/name: backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080

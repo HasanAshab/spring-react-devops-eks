@@ -1,11 +1,11 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: backend
   labels:
     app.kubernetes.io/instance: three-tier-app
-    app.kubernetes.io/name: frontend
-    app.kubernetes.io/component: frontend
+    app.kubernetes.io/name: backend
+    app.kubernetes.io/component: backend
     app.kubernetes.io/version: 1.0.0
     app.kubernetes.io/part-of: three-tier-app
 spec:
@@ -17,13 +17,13 @@ spec:
     metadata:
       labels:
         app.kubernetes.io/instance: three-tier-app
-        app.kubernetes.io/name: frontend
-        app.kubernetes.io/component: frontend
+        app.kubernetes.io/name: backend
+        app.kubernetes.io/component: backend
         app.kubernetes.io/version: 1.0.0
         app.kubernetes.io/part-of: three-tier-app
     spec:
       containers:
-      - name: frontend
-        image: ghcr.io/hasanashab/spring-react-devops-frontend:latest
+      - name: backend
+        image: ghcr.io/hasanashab/spring-react-devops-backend:latest
         ports:
-        - containerPort: 80
+        - containerPort: 8080
