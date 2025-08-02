@@ -65,14 +65,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
     }
-
-    @Override
-    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        String path = request.getRequestURI();
-        return path.equals("/signup") || 
-              path.equals("/register") || 
-              path.equals("/authenticate") ||
-              path.equals("/v3/api-docs") ||
-              path.startsWith("/swagger-ui");
-    }
 }
