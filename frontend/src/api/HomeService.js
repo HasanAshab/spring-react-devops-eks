@@ -3,7 +3,7 @@ import axios from "../customAxiosConfig/CustomAxiosConfig";
 
 const HomeService = () => {
   try {
-    return axios.get("http://localhost:8080/");
+    return axios.get("/");
   } catch (err) {
     let error = "";
     if (err.response) {

@@ -2,7 +2,7 @@ import axios from "../customAxiosConfig/CustomAxiosConfig";
 
 const UserEmailDataService = async (email) => {
   try {
-    return axios.post(`http://localhost:8080/notification`, null, {
+    return axios.post(`/notification`, null, {
       params: {
         email,
       },
