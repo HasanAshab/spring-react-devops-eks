@@ -3,7 +3,7 @@ import OfferInputField from "./fields/OfferInputField";
 import OfferTextaria from "./fields/OfferTextaria";
 import Footer from "../../../fragments/footer/Footer";
 import { useNavigate } from "react-router-dom";
-import axios from "../customAxiosConfig/CustomAxiosConfig";
+import axios from "axios";
 import AuthenticationService from "../../../../../api/authentication/AuthenticationService";
 import CreateOfferDataService from "../../../../../api/hobby/CreateOfferDataService";
 import { useState, useEffect } from "react";
