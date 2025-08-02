@@ -80,5 +80,5 @@ You can find ongoing bugs, limitations, or caveats in the [Known Issues](./KNOWN
 
 ## 🙋‍♂️ About Me
 **Hasan Ashab** – DevOps Engineer  
-LinkedIn: [@hasan-ashab](https://www.linkedin.com/in/hasan-ashab)
+LinkedIn: [@hasan-ashab](www.linkedin.com/in/hasan-ashab)
 ---

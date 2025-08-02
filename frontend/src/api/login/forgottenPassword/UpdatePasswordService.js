@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../customAxiosConfig/CustomAxiosConfig";
 
 const UpdatePasswordService = (id, password) => {
   console.log(id, password);
