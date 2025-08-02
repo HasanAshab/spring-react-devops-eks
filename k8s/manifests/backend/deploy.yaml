@@ -25,5 +25,15 @@ spec:
       containers:
       - name: backend
         image: ghcr.io/hasanashab/spring-react-devops-backend:latest
+        env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://db:3306/hobbie_backend_db_prod?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Paris
+            - name: SPRING_DATASOURCE_USERNAME
+              value: root
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: password
         ports:
         - containerPort: 8080
