@@ -5,7 +5,7 @@ services:
       target: prod
     env_file: ./frontend/.env.prod
     ports:
-      - 4200:80
+      - 4200:4200
     networks:
       - backendfrontend-net
     depends_on:

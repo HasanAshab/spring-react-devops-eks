@@ -7,8 +7,8 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: "three-tier-app.com"
-    http:
+  # - host: "three-tier-app.com"
+  - http:
       paths:
       - path: /
         pathType: Prefix
