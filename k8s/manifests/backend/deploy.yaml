@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: ghcr.io/hasanashab/spring-react-devops-appservice-backend:sha-da7e00b2968c61fbff2b963a1c8e06dbd2f152c4
+        image: ghcr.io/hasanashab/spring-react-devops-eks-backend:sha-773daf8f95eb4559c48535a94ca07dee40352cb5
         env:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:mysql://db:3306/hobbie_backend_db_prod?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Paris
