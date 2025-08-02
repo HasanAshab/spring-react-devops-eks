@@ -1,8 +1,13 @@
 import axios from "axios";
 
+const baseUrls = {
+  "development": "http://backend:8080",
+  "production": "/api"
+}
+
 // axios instance for making requests
 const axiosInstance = axios.create({
-  baseURL: "http://backend:8080",
+  baseURL: baseUrls[process.env.NODE_ENV]
 });
 
 // request interceptor for adding token
