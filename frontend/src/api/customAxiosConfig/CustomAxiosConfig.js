@@ -5,6 +5,8 @@ const baseUrls = {
   "production": "/api"
 }
 
+console.log(process.env.NODE_ENV, baseUrls[process.env.NODE_ENV]);
+
 // axios instance for making requests
 const axiosInstance = axios.create({
   baseURL: baseUrls[process.env.NODE_ENV]
