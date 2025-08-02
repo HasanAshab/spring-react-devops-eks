@@ -2,7 +2,7 @@ import axios from "../customAxiosConfig/CustomAxiosConfig";
 
 const AuthenticateUserDataService = (username, password) => {
   return axios
-    .post(`http://backend:8080/authenticate`, {
+    .post(`/authenticate`, {
       username,
       password,
     })
