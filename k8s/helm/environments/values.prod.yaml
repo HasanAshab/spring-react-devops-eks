@@ -1,0 +1,42 @@
+frontend:
+  image:
+    tag: "sha-e6ddedc0fe67a4d66ec776b18845fca603e8ce33"
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  ingress:
+    enabled: true
+  autoscaling:
+    enabled: true
+
+backend:
+  image:
+    tag: "sha-cc42d1e083e7dd15fc8305f948148a43a4d3f549"
+  db:
+    name: appdb
+    username: appuser
+    password: appsecret
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  autoscaling:
+    enabled: true
+
+mysql:
+  auth:
+    database: appdb
+    username: appuser
+    password: appsecret
+    rootPassword: rootpassword
+  primary:
+    persistence:
+      enabled: true
+      size: 1Gi

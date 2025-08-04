@@ -1,0 +1,16 @@
+mysql:
+  auth:
+    database: appdb
+    username: appuser
+    password: appsecret
+    rootPassword: rootpassword
+  primary:
+    persistence:
+      enabled: true
+      size: 20Gi
+
+backend:
+  db:
+    name: appdb
+    username: appuser
+    password: appsecret
