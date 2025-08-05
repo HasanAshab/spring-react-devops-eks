@@ -1,6 +1,6 @@
 frontend:
   image:
-    tag: sha-84752cfa249ecf78f75f7e79f9c9af098c2dc9cc
+    tag: sha-24cf6062c929c656364efd2ab348d7992e55f19c
   resources:
     limits:
       cpu: 100m
@@ -14,7 +14,7 @@ frontend:
     enabled: true
 backend:
   image:
-    tag: sha-24cf6062c929c656364efd2ab348d7992e55f19c
+    tag: sha-7ef043ae2801dd53575a5d6ef148d8d693766df8
   db:
     host: db
     name: appdb
