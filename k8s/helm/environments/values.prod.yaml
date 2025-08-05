@@ -14,7 +14,7 @@ frontend:
     enabled: true
 backend:
   image:
-    tag: sha-7ef043ae2801dd53575a5d6ef148d8d693766df8
+    tag: sha-24cf6062c929c656364efd2ab348d7992e55f19c
   db:
     host: db
     name: appdb
