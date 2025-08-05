@@ -1,6 +1,6 @@
 frontend:
   image:
-    tag: "sha-84752cfa249ecf78f75f7e79f9c9af098c2dc9cc"
+    tag: sha-84752cfa249ecf78f75f7e79f9c9af098c2dc9cc
   resources:
     limits:
       cpu: 100m
@@ -12,10 +12,9 @@ frontend:
     enabled: true
   autoscaling:
     enabled: true
-
 backend:
   image:
-    tag: "sha-cc42d1e083e7dd15fc8305f948148a43a4d3f549"
+    tag: sha-7ef043ae2801dd53575a5d6ef148d8d693766df8
   db:
     host: db
     name: appdb
@@ -30,7 +29,6 @@ backend:
       memory: 1024Mi
   autoscaling:
     enabled: true
-
 mysql:
   fullnameOverride: db
   auth:
