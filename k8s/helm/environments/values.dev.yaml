@@ -1,4 +1,12 @@
+backend:
+  db:
+    host: db
+    name: appdb
+    username: appuser
+    password: appsecret
+
 mysql:
+  fullnameOverride: db
   auth:
     database: appdb
     username: appuser
@@ -7,10 +15,4 @@ mysql:
   primary:
     persistence:
       enabled: true
-      size: 20Gi
-
-backend:
-  db:
-    name: appdb
-    username: appuser
-    password: appsecret
+      size: 1Gi

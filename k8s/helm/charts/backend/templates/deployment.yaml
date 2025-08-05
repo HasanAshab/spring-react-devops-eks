@@ -32,6 +32,10 @@ spec:
       securityContext:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      initContainers:
+        - name: wait-for-mysql
+          image: busybox:1.35
+          command: ['sh', '-c', 'until nc -z -w 2 {{ required "db.host is required!" .Values.db.host }} {{ .Values.db.port }}; do echo "Waiting for MySQL..."; sleep 2; done']
       containers:
         - name: {{ .Chart.Name }}
           {{- with .Values.securityContext }}
@@ -43,7 +47,7 @@ spec:
           env:
             - name: SPRING_DATASOURCE_URL
               value: >-
-                jdbc:mysql://{{ .Release.Name }}-mysql:{{ .Values.db.port }}/{{ required "db.name is required!" .Values.db.name }}
+                jdbc:mysql://{{ required "db.host is required!" .Values.db.host }}:{{ .Values.db.port }}/{{ required "db.name is required!" .Values.db.name }}
                 ?allowPublicKeyRetrieval={{ .Values.db.allowPublicKeyRetrieval }}
                 &useSSL={{ .Values.db.useSSL }}
                 &createDatabaseIfNotExist={{ .Values.db.createDatabaseIfNotExist }}

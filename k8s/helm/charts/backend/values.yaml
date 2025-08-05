@@ -7,7 +7,7 @@ image:
 
 imagePullSecrets: []
 nameOverride: ""
-fullnameOverride: ""
+fullnameOverride: "backend"
 
 serviceAccount:
   create: false
@@ -24,6 +24,7 @@ podSecurityContext: {}
 
 securityContext:
   runAsNonRoot: true
+  runAsUser: 1002
   # capabilities:
   #   drop:
   #   - ALL
@@ -63,6 +64,7 @@ tolerations: []
 affinity: {}
 
 db:
+  host: ""
   name: ""
   username: ""
   password: ""
