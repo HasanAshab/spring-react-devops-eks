@@ -37,6 +37,7 @@ service:
 
 resources: {}
 
+# The backend currently doesn't implemented readiness or liveness probe endpoints
 # livenessProbe:
 #   httpGet:
 #     path: /

@@ -176,29 +176,29 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-  # update-helm:
-  #   name: Sync helm chart image tag
-  #   runs-on: ubuntu-latest
-  #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-  #   needs: docker
-  #   steps:
-  #     - uses: actions/checkout@v4
+  update-helm:
+    name: Sync helm chart image tag
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: docker
+    steps:
+      - uses: actions/checkout@v4
 
-  #     - name: Update tag in Helm chart and create PR
-  #       id: update-helm
-  #       uses: fjogeleit/yaml-update-action@v0.16.1
-  #       with:
-  #         valueFile: 'helm/go-web-app-chart/values.yaml'
-  #         propertyPath: 'image.tag'
-  #         value: ${{ needs.docker.outputs.image_tag }}
-  #         masterBranchName: main
-  #         targetBranch: main
-  #         branch: ci/helm-update-${{ needs.docker.outputs.image_tag_short }}
-  #         createPR: true
-  #         message: 'ci: update Helm chart image tag to ${{ needs.docker.outputs.image_tag_short }}...'
+      - name: Update tag in Helm chart and create PR
+        id: update-helm
+        uses: fjogeleit/yaml-update-action@v0.16.1
+        with:
+          valueFile: 'k8s/helm/environments/values.prod.yaml'
+          propertyPath: 'backend.image.tag'
+          value: ${{ needs.docker.outputs.image_tag }}
+          masterBranchName: main
+          targetBranch: main
+          branch: ci/helm-update-${{ needs.docker.outputs.image_tag_short }}
+          createPR: true
+          message: 'ci: update Backend helm chart image tag to ${{ needs.docker.outputs.image_tag_short }}...'
 
-  #     - name: Enable auto-merge
-  #       uses: peter-evans/enable-pull-request-automerge@v3
-  #       with:
-  #         pull-request-number: ${{ fromJson(steps.update-helm.outputs.pull_request).number }}
-  #         merge-method: squash
+      - name: Enable auto-merge
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          pull-request-number: ${{ fromJson(steps.update-helm.outputs.pull_request).number }}
+          merge-method: squash
