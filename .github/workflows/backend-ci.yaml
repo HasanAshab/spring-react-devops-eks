@@ -4,17 +4,17 @@ on:
     branches:
       - main
     paths:
-      - 'backend/**'
+      - 'src/backend/**'
 
   pull_request:
     branches:
       - main
     paths:
-      - 'backend/**'
+      - 'src/backend/**'
 
 defaults:
   run:
-    working-directory: backend
+    working-directory: src/backend
 
 jobs:
   # test:
@@ -82,8 +82,8 @@ jobs:
   #       with:
   #         name: build-artifacts
   #         path: |
-  #           backend/target/*.jar
-  #           backend/target/*.war
+  #           src/backend/target/*.jar
+  #           src/backend/target/*.war
 
   docker:
     name: Build and push docker image
