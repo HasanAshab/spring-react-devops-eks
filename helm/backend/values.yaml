@@ -50,7 +50,7 @@ resources: {}
 autoscaling:
   enabled: false
   minReplicas: 1
-  maxReplicas: 100
+  maxReplicas: 10
   targetCPUUtilizationPercentage: 80
   targetMemoryUtilizationPercentage: 80
 
@@ -64,12 +64,13 @@ tolerations: []
 
 affinity: {}
 
-db:
-  host: ""
-  name: ""
-  username: ""
-  password: ""
-  port: 3306
+mysql:
+  fullnameOverride: "db"
+  auth:
+    database: "appdb"
+    username: "appuser"
+    password: "appsecret"
+    rootPassword: "rootpassword"
   createDatabaseIfNotExist: true
   useSSL: false
   allowPublicKeyRetrieval: true
@@ -77,3 +78,7 @@ db:
   useUnicode: true
   useLegacyDatetimeCode: false
   serverTimezone: "Europe/Paris"
+  primary:
+    persistence:
+      enabled: false
+      size: 32Gi

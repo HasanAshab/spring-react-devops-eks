@@ -1,1 +1,3 @@
-# see k8s/helm/environments/values.<env>.yaml
+frontend:
+  ingress:
+    enabled: true

@@ -35,7 +35,7 @@ spec:
       initContainers:
         - name: wait-for-mysql
           image: busybox:1.35
-          command: ['sh', '-c', 'until nc -z -w 2 {{ required "db.host is required!" .Values.db.host }} {{ .Values.db.port }}; do echo "Waiting for MySQL..."; sleep 2; done']
+          command: ['sh', '-c', 'until nc -z -w 2 {{ .Values.mysql.fullnameOverride }} 3306; do echo "Waiting for MySQL..."; sleep 2; done']
       containers:
         - name: {{ .Chart.Name }}
           {{- with .Values.securityContext }}
@@ -47,20 +47,20 @@ spec:
           env:
             - name: SPRING_DATASOURCE_URL
               value: >-
-                jdbc:mysql://{{ required "db.host is required!" .Values.db.host }}:{{ .Values.db.port }}/{{ required "db.name is required!" .Values.db.name }}
-                ?allowPublicKeyRetrieval={{ .Values.db.allowPublicKeyRetrieval }}
-                &useSSL={{ .Values.db.useSSL }}
-                &createDatabaseIfNotExist={{ .Values.db.createDatabaseIfNotExist }}
-                &useUnicode={{ .Values.db.useUnicode }}
-                &useJDBCCompliantTimezoneShift={{ .Values.db.useJDBCCompliantTimezoneShift }}
-                &useLegacyDatetimeCode={{ .Values.db.useLegacyDatetimeCode }}
-                &serverTimezone={{ .Values.db.serverTimezone }}
+                jdbc:mysql://{{ .Values.mysql.fullnameOverride }}:3306/{{ .Values.mysql.auth.database }}
+                ?allowPublicKeyRetrieval={{ .Values.mysql.allowPublicKeyRetrieval }}
+                &useSSL={{ .Values.mysql.useSSL }}
+                &createDatabaseIfNotExist={{ .Values.mysql.createDatabaseIfNotExist }}
+                &useUnicode={{ .Values.mysql.useUnicode }}
+                &useJDBCCompliantTimezoneShift={{ .Values.mysql.useJDBCCompliantTimezoneShift }}
+                &useLegacyDatetimeCode={{ .Values.mysql.useLegacyDatetimeCode }}
+                &serverTimezone={{ .Values.mysql.serverTimezone }}
 
             - name: SPRING_DATASOURCE_USERNAME
-              value: {{ required "db.username is required!" .Values.db.username | quote }}
+              value: {{ .Values.mysql.auth.username | quote }}
 
             - name: SPRING_DATASOURCE_PASSWORD
-              value: {{ required "db.password is required!" .Values.db.password | quote }}
+              value: {{ .Values.mysql.auth.password | quote }}
 
           ports:
             - name: http
