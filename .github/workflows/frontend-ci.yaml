@@ -179,8 +179,8 @@ jobs:
         id: update-helm
         uses: fjogeleit/yaml-update-action@v0.16.1
         with:
-          valueFile: 'k8s/helm/environments/values.prod.yaml'
-          propertyPath: 'frontend.image.tag'
+          valueFile: 'helm/frontend/environments/values.prod.yaml'
+          propertyPath: 'image.tag'
           value: ${{ needs.docker.outputs.image_tag }}
           masterBranchName: main
           targetBranch: main

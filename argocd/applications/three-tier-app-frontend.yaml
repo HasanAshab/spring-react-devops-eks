@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: three-tier-app-frontend
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  project: three-tier-app
+  source:
+    repoURL: https://github.com/HasanAshab/spring-react-devops-eks.git
+    targetRevision: main
+    path: helm/frontend
+    helm:
+      valueFiles:
+        - values.yaml
+        - environments/values.prod.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: three-tier-app
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true 
