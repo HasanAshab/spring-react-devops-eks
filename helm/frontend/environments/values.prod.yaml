@@ -1,6 +1,5 @@
 image:
-  tag: sha-24cf6062c929c656364efd2ab348d7992e55f19c
-
+  tag: sha-49ef0d1dc1c370bff6ff3e594231a0b49d3a3642
 resources:
   limits:
     cpu: 100m
@@ -8,9 +7,7 @@ resources:
   requests:
     cpu: 100m
     memory: 128Mi
-
 ingress:
   enabled: true
-
 autoscaling:
   enabled: true
