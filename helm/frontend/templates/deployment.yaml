@@ -35,7 +35,7 @@ spec:
       initContainers:
       - name: wait-for-backend
         image: busybox:1.35
-        command: ['sh', '-c', 'until nslookup backend; do echo "Waiting for backend DNS..."; sleep 2; done']
+        command: ['sh', '-c', 'until nc -z backend.three-tier-app.svc.cluster.local 8080; do echo "Waiting for backend..."; sleep 2; done']
       containers:
         - name: {{ .Chart.Name }}
           {{- with .Values.securityContext }}
