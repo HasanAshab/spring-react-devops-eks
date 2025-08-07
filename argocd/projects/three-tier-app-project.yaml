@@ -7,7 +7,7 @@ spec:
   description: Three Tier Application
   
   sourceRepos:
-    - 'https://github.com/HasanAshab/spring-react-devops-eks.git'
+    - 'https://github.com/HasanAshab/three-tier-devops-eks.git'
 
   destinations:
     - namespace: three-tier-app
