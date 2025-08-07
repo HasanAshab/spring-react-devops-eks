@@ -14,7 +14,7 @@ on:
 
 defaults:
   run:
-    working-directory: frontend
+    working-directory: src/frontend
 
 jobs:
   # test:

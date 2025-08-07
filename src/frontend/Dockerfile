@@ -42,5 +42,5 @@ RUN touch /var/run/nginx.pid
 RUN chown -R 1001:1001 /var/run/nginx.pid /usr/share/nginx/html /var/cache/nginx /var/log/nginx /etc/nginx/conf.d
 USER 1001
 
-# run app
+# run the app
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
