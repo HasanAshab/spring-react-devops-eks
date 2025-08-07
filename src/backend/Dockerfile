@@ -38,3 +38,4 @@ COPY --from=prepare-production /app/BOOT-INF/lib /app/lib
 
 # Run the application
 ENTRYPOINT [ "java", "-cp","app:app/lib/*", "backend.hobbiebackend.HobbieBackendApplication" ]
+ 

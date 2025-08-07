@@ -44,3 +44,4 @@ USER 1001
 
 # run the app
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
+ 

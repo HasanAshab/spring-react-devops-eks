@@ -128,7 +128,7 @@ jobs:
       - name: Build docker image
         uses: docker/build-push-action@v6
         with:
-          context: backend
+          context: src/backend
           target: prod
           push: false
           load: true
@@ -168,7 +168,7 @@ jobs:
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: docker/build-push-action@v6
         with:
-          context: backend
+          context: src/backend
           target: prod
           push: true
           tags: ${{ steps.meta.outputs.tags }}
