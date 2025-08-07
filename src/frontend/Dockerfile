@@ -37,7 +37,7 @@ RUN rm -rf /usr/share/nginx/html/*
 # copy build
 COPY --from=build /app/build /usr/share/nginx/html
 
-# run nginx as non-root
+# run nginx as non-root user
 RUN touch /var/run/nginx.pid
 RUN chown -R 1001:1001 /var/run/nginx.pid /usr/share/nginx/html /var/cache/nginx /var/log/nginx /etc/nginx/conf.d
 USER 1001
