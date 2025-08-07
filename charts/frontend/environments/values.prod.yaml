@@ -1,5 +1,5 @@
 image:
-  tag: sha-49ef0d1dc1c370bff6ff3e594231a0b49d3a3642
+  tag: sha-1c0eb6bdf91c52d35f94d666e0d76b0046f12093
 resources:
   limits:
     cpu: 100m
