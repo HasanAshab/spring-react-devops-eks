@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/HasanAshab/three-tier-devops-eks.git
     targetRevision: main
-    path: helm/frontend
+    path: charts/frontend
     helm:
       valueFiles:
         - values.yaml
